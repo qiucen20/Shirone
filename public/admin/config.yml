@@ -58,8 +58,8 @@ collections:
     meta:
       path:
         index_file: info
-    media_folder: ""
-    public_folder: ""
+    media_folder: "/public/images/albums"
+    public_folder: "/images/albums"
     fields:
       - { name: title, label: "标题", widget: string }
       - { name: description, label: "描述", widget: text, required: false }
@@ -78,6 +78,16 @@ collections:
       - { name: hidden, label: "隐藏", widget: boolean, default: false }
       - { name: password, label: "密码(可选)", widget: string, required: false }
       - { name: passwordHint, label: "密码提示", widget: string, required: false }
+      - { name: mode, label: "模式", widget: hidden, default: "external" }
+      - { name: cover, label: "封面图", widget: image, required: false }
+      - name: photos
+        label: "相册图片"
+        widget: list
+        required: false
+        fields:
+          - { name: src, label: "图片", widget: image }
+          - { name: alt, label: "描述", widget: string, required: false }
+          - { name: title, label: "标题", widget: string, required: false }
 
   - name: anime
     label: "番剧"
