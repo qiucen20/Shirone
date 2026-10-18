@@ -45,3 +45,30 @@ collections:
           - { name: src, label: "图片路径", widget: string }
           - { name: alt, label: "图片描述", widget: string, required: false }
       - { name: body, label: "内容", widget: markdown }
+
+  - name: albums
+    label: "相册"
+    folder: "public/images/albums"
+    index_file: "info"
+    extension: "json"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: "标题", widget: string }
+      - { name: description, label: "描述", widget: text, required: false }
+      - { name: date, label: "日期", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, required: false }
+      - { name: location, label: "地点", widget: string, required: false }
+      - { name: tags, label: "标签", widget: list, required: false }
+      - { name: layout, label: "布局", widget: select, options: ["masonry", "grid"], default: "masonry" }
+      - name: columns
+        label: "列数"
+        widget: select
+        default: 3
+        options:
+          - { label: "2 列", value: 2 }
+          - { label: "3 列", value: 3 }
+          - { label: "4 列", value: 4 }
+      - { name: hidden, label: "隐藏", widget: boolean, default: false }
+      - { name: password, label: "密码(可选)", widget: string, required: false }
+      - { name: passwordHint, label: "密码提示", widget: string, required: false }
