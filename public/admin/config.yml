@@ -49,11 +49,15 @@ collections:
   - name: albums
     label: "相册"
     folder: "public/images/albums"
-    index_file: "info"
+    create: true
     extension: "json"
     format: "json"
-    create: true
-    slug: "{{slug}}"
+    nested:
+      depth: 2
+      subfolders: true
+    meta:
+      path:
+        index_file: info
     fields:
       - { name: title, label: "标题", widget: string }
       - { name: description, label: "描述", widget: text, required: false }
