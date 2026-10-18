@@ -58,6 +58,8 @@ collections:
     meta:
       path:
         index_file: info
+    media_folder: ""
+    public_folder: ""
     fields:
       - { name: title, label: "标题", widget: string }
       - { name: description, label: "描述", widget: text, required: false }
@@ -83,13 +85,15 @@ collections:
       - name: anime-list
         label: "番剧列表"
         file: "src/data/anime.json"
+        media_folder: "/public/assets/anime"
+        public_folder: "/assets/anime"
         fields:
           - name: items
             label: "条目"
             widget: list
             fields:
               - { name: title, label: "标题", widget: string }
-              - { name: cover, label: "封面图路径", widget: string, required: false, hint: "如 /assets/anime/xxx.webp" }
+              - { name: cover, label: "封面图", widget: image, required: false }
               - { name: link, label: "链接", widget: string, required: false }
               - { name: status, label: "状态", widget: select, options: ["watching", "completed", "planned", "onHold", "dropped"], default: "planned" }
               - { name: rating, label: "评分(0-10)", widget: number, value_type: float, min: 0, max: 10, required: false }
