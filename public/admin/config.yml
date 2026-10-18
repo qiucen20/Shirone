@@ -198,6 +198,8 @@ collections:
       - name: games-list
         label: "游戏列表"
         file: "src/data/games.json"
+        media_folder: "/public/assets/games"
+        public_folder: "/assets/games"
         fields:
           - name: items
             label: "条目"
@@ -208,7 +210,7 @@ collections:
               - { name: developer, label: "开发商", widget: string, required: false }
               - { name: category, label: "分类", widget: string, required: false }
               - { name: status, label: "状态", widget: string, required: false }
-              - { name: cover, label: "封面", widget: string, required: false }
+              - { name: cover, label: "封面图", widget: image, required: false }
               - { name: icon, label: "图标", widget: string, required: false }
               - { name: rating, label: "评分", widget: number, value_type: float, required: false }
               - { name: hours, label: "时长(小时)", widget: number, value_type: int, required: false }
