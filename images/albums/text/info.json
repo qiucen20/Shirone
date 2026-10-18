@@ -1,0 +1,23 @@
+{
+  "title": "text",
+  "description": "",
+  "date": "",
+  "location": "",
+  "tags": [
+    "text"
+  ],
+  "layout": "masonry",
+  "columns": 3,
+  "hidden": false,
+  "password": "",
+  "passwordHint": "",
+  "mode": "external",
+  "cover": "/images/albums/006uSVbzgy1i2pltc8nmej30b40b4q3c.jpg",
+  "photos": [
+    {
+      "src": "/images/albums/006uSVbzgy1i2pltc8nmej30b40b4q3c.jpg",
+      "alt": "",
+      "title": ""
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh_CN">
+  <title>云流</title>
+  <subtitle>直至黎明，这场梦，蝴蝶之梦</subtitle>
+  <link href="http://8.163.28.178/" rel="alternate" type="text/html"/>
+  <link href="http://8.163.28.178/atom.xml" rel="self" type="application/atom+xml"/>
+  <id>http://8.163.28.178/</id>
+  <updated>1970-01-01T00:00:00.000Z</updated>
+
+</feed>

@@ -1,0 +1,13 @@
+# 云流
+
+> 直至黎明，这场梦，蝴蝶之梦
+
+This is the llms.txt file for 云流. It provides a machine-readable directory of published articles and core pages for Large Language Models.
+
+## Core Pages
+- [Home](http://8.163.28.178/): Main blog entrance and latest post stream.
+- [About](http://8.163.28.178/about/): Author profile, technical stack, and background.
+- [Archive](http://8.163.28.178/archive/): Chronological index of all published writings.
+
+## Full Text Dump
+- [Full Text Archive](http://8.163.28.178/llms-full.txt): Complete, concatenated Markdown content of all public articles for full-context ingestion.

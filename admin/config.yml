@@ -1,0 +1,331 @@
+backend:
+  name: github
+  repo: qiucen20/Shirone
+  branch: main
+
+media_folder: "src/assets"
+public_folder: "/src/assets"
+
+collections:
+  - name: posts
+    label: "文章"
+    folder: "src/content/posts"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { name: title, label: "标题", widget: string }
+      - { name: published, label: "发布日期", widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+      - { name: description, label: "简介", widget: text }
+      - { name: tags, label: "标签", widget: list, required: false }
+      - { name: category, label: "分类", widget: string, required: false }
+      - { name: series, label: "系列", widget: string, required: false }
+      - { name: seriesOrder, label: "系列顺序", widget: number, required: false, value_type: int }
+      - { name: draft, label: "草稿", widget: boolean, default: false }
+      - { name: body, label: "正文", widget: markdown }
+
+  - name: moments
+    label: "动态"
+    folder: "src/content/moments"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { name: published, label: "发布时间", widget: datetime }
+      - { name: pinned, label: "置顶", widget: boolean, required: false, default: false }
+      - { name: mood, label: "心情图标", widget: string, required: false, hint: "如 material-symbols:sentiment-excited-outline-rounded" }
+      - { name: tags, label: "标签", widget: list, required: false }
+      - name: images
+        label: "图片"
+        widget: list
+        required: false
+        fields:
+          - { name: src, label: "图片路径", widget: string }
+          - { name: alt, label: "图片描述", widget: string, required: false }
+      - { name: body, label: "内容", widget: markdown }
+
+  - name: albums
+    label: "相册"
+    folder: "public/images/albums"
+    create: true
+    extension: "json"
+    format: "json"
+    nested:
+      depth: 2
+      subfolders: true
+    meta:
+      path:
+        index_file: info
+    media_folder: "/public/images/albums"
+    public_folder: "/images/albums"
+    fields:
+      - { name: title, label: "标题", widget: string }
+      - { name: description, label: "描述", widget: text, required: false }
+      - { name: date, label: "日期", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, required: false }
+      - { name: location, label: "地点", widget: string, required: false }
+      - { name: tags, label: "标签", widget: list, required: false }
+      - { name: layout, label: "布局", widget: select, options: ["masonry", "grid"], default: "masonry" }
+      - name: columns
+        label: "列数"
+        widget: select
+        default: 3
+        options:
+          - { label: "2 列", value: 2 }
+          - { label: "3 列", value: 3 }
+          - { label: "4 列", value: 4 }
+      - { name: hidden, label: "隐藏", widget: boolean, default: false }
+      - { name: password, label: "密码(可选)", widget: string, required: false }
+      - { name: passwordHint, label: "密码提示", widget: string, required: false }
+      - { name: mode, label: "模式", widget: hidden, default: "external" }
+      - { name: cover, label: "封面图", widget: image, required: false }
+      - name: photos
+        label: "相册图片"
+        widget: list
+        required: false
+        fields:
+          - { name: src, label: "图片", widget: image }
+          - { name: alt, label: "描述", widget: string, required: false }
+          - { name: title, label: "标题", widget: string, required: false }
+
+  - name: anime
+    label: "番剧"
+    files:
+      - name: anime-list
+        label: "番剧列表"
+        file: "src/data/anime.json"
+        media_folder: "/public/assets/anime"
+        public_folder: "/assets/anime"
+        fields:
+          - name: items
+            label: "条目"
+            widget: list
+            fields:
+              - { name: title, label: "标题", widget: string }
+              - { name: cover, label: "封面图", widget: image, required: false }
+              - { name: link, label: "链接", widget: string, required: false }
+              - { name: status, label: "状态", widget: select, options: ["watching", "completed", "planned", "onHold", "dropped"], default: "planned" }
+              - { name: rating, label: "评分(0-10)", widget: number, value_type: float, min: 0, max: 10, required: false }
+              - name: progress
+                label: "进度"
+                widget: object
+                required: false
+                fields:
+                  - { name: watched, label: "已看集数", widget: number, value_type: int, default: 0 }
+                  - { name: total, label: "总集数", widget: number, value_type: int, default: 12 }
+              - { name: description, label: "一句话感想", widget: text, required: false }
+              - { name: year, label: "年份", widget: string }
+              - { name: studio, label: "制作公司", widget: string, required: false }
+              - { name: genres, label: "题材标签", widget: list, required: false }
+              - name: period
+                label: "观看时间段"
+                widget: object
+                required: false
+                fields:
+                  - { name: start, label: "开始(年-月)", widget: string, required: false }
+                  - { name: end, label: "结束(年-月)", widget: string, required: false }
+
+  - name: friends
+    label: "友链"
+    files:
+      - name: friends-list
+        label: "友链列表"
+        file: "src/data/friends.json"
+        media_folder: "/public/assets/friends"
+        public_folder: "/assets/friends"
+        fields:
+          - name: items
+            label: "条目"
+            widget: list
+            fields:
+              - { name: id, label: "ID", widget: number, value_type: int }
+              - { name: title, label: "名称", widget: string }
+              - { name: imgurl, label: "头像", widget: image }
+              - { name: desc, label: "描述", widget: text }
+              - { name: siteurl, label: "网址", widget: string }
+              - { name: tags, label: "标签", widget: list, required: false }
+
+  - name: compass
+    label: "罗盘"
+    files:
+      - name: compass-list
+        label: "罗盘站点"
+        file: "src/data/compass.json"
+        media_folder: "/public/assets/compass"
+        public_folder: "/assets/compass"
+        fields:
+          - name: items
+            label: "分组"
+            widget: list
+            fields:
+              - { name: key, label: "标识", widget: string }
+              - { name: name, label: "分组名", widget: string }
+              - { name: icon, label: "图标", widget: string, required: false }
+              - { name: blurb, label: "分组说明", widget: string, required: false }
+              - name: entries
+                label: "站点"
+                widget: list
+                fields:
+                  - { name: label, label: "名称", widget: string }
+                  - { name: href, label: "网址", widget: string }
+                  - { name: note, label: "说明", widget: string, required: false }
+                  - { name: icon, label: "图标", widget: string, required: false }
+                  - { name: image, label: "图片", widget: image, required: false }
+
+  - name: devices
+    label: "设备"
+    files:
+      - name: devices-list
+        label: "设备列表"
+        file: "src/data/devices.json"
+        fields:
+          - name: items
+            label: "条目"
+            widget: list
+            fields:
+              - { name: id, label: "ID", widget: string }
+              - { name: name, label: "名称", widget: string }
+              - { name: brand, label: "品牌", widget: string }
+              - { name: category, label: "分类", widget: string }
+              - { name: status, label: "状态", widget: string, default: "active" }
+              - { name: specs, label: "配置", widget: string, required: false }
+              - { name: description, label: "描述", widget: text, required: false }
+              - { name: icon, label: "图标", widget: string, required: false }
+              - { name: featured, label: "精选", widget: boolean, required: false, default: false }
+              - { name: year, label: "年份", widget: string, required: false }
+              - { name: link, label: "链接", widget: string, required: false }
+
+  - name: games
+    label: "游戏"
+    files:
+      - name: games-list
+        label: "游戏列表"
+        file: "src/data/games.json"
+        media_folder: "/public/assets/games"
+        public_folder: "/assets/games"
+        fields:
+          - name: items
+            label: "条目"
+            widget: list
+            fields:
+              - { name: id, label: "ID", widget: string }
+              - { name: name, label: "名称", widget: string }
+              - { name: developer, label: "开发商", widget: string, required: false }
+              - { name: category, label: "分类", widget: string, required: false }
+              - { name: status, label: "状态", widget: string, required: false }
+              - { name: cover, label: "封面图", widget: image, required: false }
+              - { name: icon, label: "图标", widget: string, required: false }
+              - { name: rating, label: "评分", widget: number, value_type: float, required: false }
+              - { name: hours, label: "时长(小时)", widget: number, value_type: int, required: false }
+              - { name: platform, label: "平台", widget: string, required: false }
+              - { name: year, label: "年份", widget: string, required: false }
+              - { name: tags, label: "标签", widget: list, required: false }
+              - { name: description, label: "描述", widget: text, required: false }
+              - { name: link, label: "链接", widget: string, required: false }
+              - { name: featured, label: "精选", widget: boolean, required: false, default: false }
+
+  - name: music
+    label: "音乐"
+    files:
+      - name: music-list
+        label: "曲目列表"
+        file: "src/data/music.json"
+        media_folder: "/public/assets/music"
+        public_folder: "/assets/music"
+        fields:
+          - name: items
+            label: "条目"
+            widget: list
+            fields:
+              - { name: id, label: "ID", widget: string }
+              - { name: title, label: "标题", widget: string }
+              - { name: artist, label: "艺术家", widget: string, required: false }
+              - { name: cover, label: "封面图", widget: image, required: false }
+              - { name: source, label: "音频地址", widget: string }
+              - { name: duration, label: "时长(秒)", widget: number, value_type: int, required: false }
+
+  - name: projects
+    label: "项目"
+    files:
+      - name: projects-list
+        label: "项目列表"
+        file: "src/data/projects.json"
+        media_folder: "/public/assets/projects"
+        public_folder: "/assets/projects"
+        fields:
+          - name: items
+            label: "条目"
+            widget: list
+            fields:
+              - { name: key, label: "标识", widget: string }
+              - { name: title, label: "名称", widget: string }
+              - { name: summary, label: "简介", widget: text }
+              - { name: category, label: "分类", widget: string, required: false }
+              - { name: phase, label: "阶段", widget: string, required: false }
+              - { name: technologies, label: "技术栈", widget: list, required: false }
+              - { name: icon, label: "图标", widget: string, required: false }
+              - { name: cover, label: "封面图", widget: image, required: false }
+              - { name: coverAlt, label: "封面说明", widget: string, required: false }
+              - { name: featured, label: "精选", widget: boolean, required: false, default: false }
+              - { name: repository, label: "仓库地址", widget: string, required: false }
+              - { name: year, label: "年份", widget: string, required: false }
+
+  - name: skills
+    label: "技能"
+    files:
+      - name: skills-list
+        label: "技能列表"
+        file: "src/data/skills.json"
+        fields:
+          - name: items
+            label: "条目"
+            widget: list
+            fields:
+              - { name: name, label: "名称", widget: string }
+              - { name: description, label: "描述", widget: text }
+              - { name: icon, label: "图标", widget: string }
+              - { name: category, label: "分类", widget: string }
+              - { name: level, label: "水平", widget: string, default: "intermediate" }
+
+  - name: timeline
+    label: "时间轴"
+    files:
+      - name: timeline-list
+        label: "时间轴列表"
+        file: "src/data/timeline.json"
+        fields:
+          - name: items
+            label: "条目"
+            widget: list
+            fields:
+              - { name: title, label: "标题", widget: string }
+              - { name: date, label: "日期", widget: string }
+              - { name: category, label: "分类", widget: string, required: false }
+              - { name: subtitle, label: "副标题", widget: string, required: false }
+              - { name: location, label: "地点", widget: string, required: false }
+              - { name: description, label: "描述", widget: text, required: false }
+              - { name: highlights, label: "要点", widget: list, required: false }
+              - { name: tags, label: "标签", widget: list, required: false }
+              - name: links
+                label: "链接"
+                widget: list
+                required: false
+                fields:
+                  - { name: label, label: "文字", widget: string }
+                  - { name: url, label: "地址", widget: string }
+                  - { name: icon, label: "图标", widget: string, required: false }
+              - { name: icon, label: "图标", widget: string, required: false }
+              - { name: featured, label: "精选", widget: boolean, required: false, default: false }
+
+  - name: series
+    label: "系列"
+    folder: "src/content/series"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { name: title, label: "标题", widget: string }
+      - { name: status, label: "状态", widget: select, options: ["ongoing", "completed"], required: false }
+      - { name: defaultCategory, label: "默认分类", widget: string, required: false }
+      - { name: body, label: "说明", widget: markdown, required: false }
