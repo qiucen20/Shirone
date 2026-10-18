@@ -20,6 +20,27 @@
       "description": "A blocky sandbox where you mine, craft and build across procedurally generated worlds. Survive the night, or just keep building — alone or with friends.",
       "link": "https://www.minecraft.net/",
       "featured": false
+    },
+    {
+      "id": "Counter-Strike 2",
+      "name": "Counter-Strike 2",
+      "developer": "Valve",
+      "category": "action_fps",
+      "status": "playing",
+      "cover": "/assets/games/header_schinese.jpg",
+      "icon": "",
+      "rating": 5,
+      "hours": 2243,
+      "platform": "steam",
+      "year": "2017",
+      "tags": [
+        "Shooting",
+        "Multiplayer",
+        "action_fps"
+      ],
+      "description": "这个游戏有个魔咒：哪怕你不想打开他，但是在无聊的时候你的手会控制你的大脑打开的",
+      "link": "https://store.steampowered.com/app/730/CounterStrike_2/",
+      "featured": false
     }
   ]
 }
