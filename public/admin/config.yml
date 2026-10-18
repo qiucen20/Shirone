@@ -132,6 +132,8 @@ collections:
       - name: friends-list
         label: "友链列表"
         file: "src/data/friends.json"
+        media_folder: "/public/assets/friends"
+        public_folder: "/assets/friends"
         fields:
           - name: items
             label: "条目"
@@ -139,7 +141,7 @@ collections:
             fields:
               - { name: id, label: "ID", widget: number, value_type: int }
               - { name: title, label: "名称", widget: string }
-              - { name: imgurl, label: "头像URL", widget: string }
+              - { name: imgurl, label: "头像", widget: image }
               - { name: desc, label: "描述", widget: text }
               - { name: siteurl, label: "网址", widget: string }
               - { name: tags, label: "标签", widget: list, required: false }
@@ -150,6 +152,8 @@ collections:
       - name: compass-list
         label: "罗盘站点"
         file: "src/data/compass.json"
+        media_folder: "/public/assets/compass"
+        public_folder: "/assets/compass"
         fields:
           - name: items
             label: "分组"
@@ -167,7 +171,7 @@ collections:
                   - { name: href, label: "网址", widget: string }
                   - { name: note, label: "说明", widget: string, required: false }
                   - { name: icon, label: "图标", widget: string, required: false }
-                  - { name: image, label: "图片URL", widget: string, required: false }
+                  - { name: image, label: "图片", widget: image, required: false }
 
   - name: devices
     label: "设备"
@@ -227,6 +231,8 @@ collections:
       - name: music-list
         label: "曲目列表"
         file: "src/data/music.json"
+        media_folder: "/public/assets/music"
+        public_folder: "/assets/music"
         fields:
           - name: items
             label: "条目"
@@ -235,7 +241,7 @@ collections:
               - { name: id, label: "ID", widget: string }
               - { name: title, label: "标题", widget: string }
               - { name: artist, label: "艺术家", widget: string, required: false }
-              - { name: cover, label: "封面", widget: string, required: false }
+              - { name: cover, label: "封面图", widget: image, required: false }
               - { name: source, label: "音频地址", widget: string }
               - { name: duration, label: "时长(秒)", widget: number, value_type: int, required: false }
 
@@ -245,6 +251,8 @@ collections:
       - name: projects-list
         label: "项目列表"
         file: "src/data/projects.json"
+        media_folder: "/public/assets/projects"
+        public_folder: "/assets/projects"
         fields:
           - name: items
             label: "条目"
@@ -257,7 +265,7 @@ collections:
               - { name: phase, label: "阶段", widget: string, required: false }
               - { name: technologies, label: "技术栈", widget: list, required: false }
               - { name: icon, label: "图标", widget: string, required: false }
-              - { name: cover, label: "封面", widget: string, required: false }
+              - { name: cover, label: "封面图", widget: image, required: false }
               - { name: coverAlt, label: "封面说明", widget: string, required: false }
               - { name: featured, label: "精选", widget: boolean, required: false, default: false }
               - { name: repository, label: "仓库地址", widget: string, required: false }
