@@ -1,4 +1,5 @@
 import type { TrackDescriptor } from "@/types/musicConfig";
+import musicJson from "./music.json";
 
 /**
  * 侧栏音乐本地曲目数据源。
@@ -12,37 +13,4 @@ import type { TrackDescriptor } from "@/types/musicConfig";
  * - source: 音频文件地址（相对 /public 或绝对 URL）
  * - duration: 曲目时长（秒，可选）
  */
-export const musicTracks: readonly TrackDescriptor[] = [
-	{
-		id: "dazbee",
-		title: "口笛で愛は歌えない",
-		artist: "Dazbee",
-		cover: "assets/images/music/dazbee.webp",
-		source: "/assets/music/url/dazbee.mp3",
-		duration: 241,
-	},
-	{
-		id: "hitori",
-		title: "ひとり上手",
-		artist: "Kaya",
-		cover: "assets/images/music/hitori.webp",
-		source: "/assets/music/url/hitori.mp3",
-		duration: 253,
-	},
-	{
-		id: "xryx",
-		title: "眩耀夜行",
-		artist: "スリーズブーケ",
-		cover: "assets/images/music/xryx.webp",
-		source: "/assets/music/url/xryx.mp3",
-		duration: 245,
-	},
-	{
-		id: "cl",
-		title: "春雷の頃",
-		artist: "22/7",
-		cover: "assets/images/music/cl.webp",
-		source: "/assets/music/url/cl.mp3",
-		duration: 242,
-	},
-];
+export const musicTracks: readonly TrackDescriptor[] = (musicJson as { items: readonly TrackDescriptor[] }).items;
