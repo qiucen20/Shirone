@@ -72,3 +72,38 @@ collections:
       - { name: hidden, label: "隐藏", widget: boolean, default: false }
       - { name: password, label: "密码(可选)", widget: string, required: false }
       - { name: passwordHint, label: "密码提示", widget: string, required: false }
+
+  - name: anime
+    label: "番剧"
+    files:
+      - name: anime-list
+        label: "番剧列表"
+        file: "src/data/anime.json"
+        fields:
+          - name: items
+            label: "条目"
+            widget: list
+            fields:
+              - { name: title, label: "标题", widget: string }
+              - { name: cover, label: "封面图路径", widget: string, required: false, hint: "如 /assets/anime/xxx.webp" }
+              - { name: link, label: "链接", widget: string, required: false }
+              - { name: status, label: "状态", widget: select, options: ["watching", "completed", "planned", "onHold", "dropped"], default: "planned" }
+              - { name: rating, label: "评分(0-10)", widget: number, value_type: float, min: 0, max: 10, required: false }
+              - name: progress
+                label: "进度"
+                widget: object
+                required: false
+                fields:
+                  - { name: watched, label: "已看集数", widget: number, value_type: int, default: 0 }
+                  - { name: total, label: "总集数", widget: number, value_type: int, default: 12 }
+              - { name: description, label: "一句话感想", widget: text, required: false }
+              - { name: year, label: "年份", widget: string }
+              - { name: studio, label: "制作公司", widget: string, required: false }
+              - { name: genres, label: "题材标签", widget: list, required: false }
+              - name: period
+                label: "观看时间段"
+                widget: object
+                required: false
+                fields:
+                  - { name: start, label: "开始(年-月)", widget: string, required: false }
+                  - { name: end, label: "结束(年-月)", widget: string, required: false }
