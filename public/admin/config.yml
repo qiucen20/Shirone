@@ -24,3 +24,24 @@ collections:
       - { name: seriesOrder, label: "系列顺序", widget: number, required: false, value_type: int }
       - { name: draft, label: "草稿", widget: boolean, default: false }
       - { name: body, label: "正文", widget: markdown }
+
+  - name: moments
+    label: "动态"
+    folder: "src/content/moments"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { name: published, label: "发布时间", widget: datetime }
+      - { name: pinned, label: "置顶", widget: boolean, required: false, default: false }
+      - { name: mood, label: "心情图标", widget: string, required: false, hint: "如 material-symbols:sentiment-excited-outline-rounded" }
+      - { name: tags, label: "标签", widget: list, required: false }
+      - name: images
+        label: "图片"
+        widget: list
+        required: false
+        fields:
+          - { name: src, label: "图片路径", widget: string }
+          - { name: alt, label: "图片描述", widget: string, required: false }
+      - { name: body, label: "内容", widget: markdown }
