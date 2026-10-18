@@ -12,8 +12,8 @@ import { withUserConfig } from "../utils/config-overlay.ts";
 export const siteConfig: SiteConfig = withUserConfig("site", {
 	site: "http://8.163.28.178/",
 	base: "/",
-	title: "Shirone",
-	subtitle: "A Material 3 anime blog",
+	title: "云流",
+	subtitle: "直至黎明，这场梦，蝴蝶之梦",
 	// 电脑端顶栏标题与导航内容区域："left" 左对齐，"center" 居中。
 	topAppBar: {
 		contentAlign: "center",
